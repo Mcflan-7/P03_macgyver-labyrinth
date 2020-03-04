@@ -12,7 +12,7 @@ class Laby:
     """
     
     def __init__(self):
-        """initialization of instances """
+        """initialization of instances for the laby class """
 
         self.walls = []
         self.paths = []
@@ -23,10 +23,11 @@ class Laby:
         self._random_positions = None
  
     def read_from_file(self):
-        """Read_from_file is reading each line of path.txt
+        """Read_from_file is reading each lines of path.txt
         and return an enumerate list for wall (unauthorized path)
-        or path (authorized path)
-        it includes also the starting position and the exit"""
+        or path (authorized path) with index and value
+        it includes the starting position and the exit
+        and finally a method to get random position"""
         
         with open("maps/path.txt", "r") as f:
             for ligne_n, ligne in enumerate(f):
@@ -41,8 +42,7 @@ class Laby:
                         self.start.append((ligne_n, col_n))
                     elif col == "X":
                         self.end.append((ligne_n, col_n))
-                    
-                                    
+                                              
         # -tc- tu peux même déplacer la création de positions aléatoire ici, dès que la liste
         # -tc- paths a été initialisée.
         self._random_positions = iter(random.sample(self.paths, len(self.paths)))
@@ -54,10 +54,6 @@ class Laby:
         # -tc- si self._random_positions est créer sous forme d'un itérateur, il te suffit d'utiliser next()
         # -tc- pour retourner à chaque fois la prochaine position aléatoire
         return next(self._random_positions)
-
-def right (position):
-    ligne_n, col_n = position
-    return ligne_n, col_n +1
     
 class Hero:
     """Hero: Class hero that set some actions
@@ -70,7 +66,12 @@ class Hero:
         self.won = False
 
     def pick_up_item(self):
-        self.inventory += 1                #si hereo va sur case vide et item present, incremente +1 inventory
+        """Method used to store the number
+        of item MacGayver pick up and 
+        give a random position to them each time 
+        we load the class  """
+        
+        self.inventory += 1             
         if self.inventory == 3:
             print("You won !")
             self.won = True
@@ -80,13 +81,14 @@ class Hero:
        pass
 
 def test_hero_works_as_expected():
+    """Function that test if Class Hero is creating
+    new instances and if the condition is working """
     Hero()
     h = Hero()
     h.pick_up_item()
     h.pick_up_item() 
     h.pick_up_item() 
     print("Succeed: ", h.won)
-test_hero_works_as_expected()
 
 class Item:
     """Item: To generate new items in a 
@@ -96,8 +98,6 @@ class Item:
     def __init__(self):
         self.items = ["Ether", "Needle", "Syringe"]
     
-    
-
 Item()
 print(Item().items)
 
@@ -115,3 +115,4 @@ def test_laby_works_as_expected():
 # -tc- et prendre l'habitude de le lancer uniquement après cette condition (voir cours "Perfectionnez-vous en python")
 if __name__ == "__main__":
     test_laby_works_as_expected()
+    test_hero_works_as_expected()
