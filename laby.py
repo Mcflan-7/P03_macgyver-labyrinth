@@ -60,15 +60,46 @@ def right (position):
     return ligne_n, col_n +1
     
 class Hero:
+    """Hero: Class hero that set some actions
+    (attributs) to Macgayver and
+    manage the inventory """
+
     def __init__(self):
         self.position= (0, 0)
         self.inventory = 0
+        self.won = False
 
     def pick_up_item(self):
-        pass
-
+        self.inventory += 1                #si hereo va sur case vide et item present, incremente +1 inventory
+        if self.inventory == 3:
+            print("You won !")
+            self.won = True
+        else:
+            print("Not so fast !", self.inventory  ,"item(s) picked up, you need 3.")
     def move(self):
-        pass
+       pass
+
+def test_hero_works_as_expected():
+    Hero()
+    h = Hero()
+    h.pick_up_item()
+    h.pick_up_item() 
+    h.pick_up_item() 
+    print("Succeed: ", h.won)
+test_hero_works_as_expected()
+
+class Item:
+    """Item: To generate new items in a 
+    random position and incremente 
+    Macgayver's inventory """
+    
+    def __init__(self):
+        self.items = ["Ether", "Needle", "Syringe"]
+    
+    
+
+Item()
+print(Item().items)
 
 # -tc- Pour le code de test, prendre l'habitude d'utiliser une fonction également
 def test_laby_works_as_expected():
