@@ -73,8 +73,13 @@ class Hero:
             self.won = True
         else:
             print("Not so fast !", self.inventory  ,"item(s) picked up, you need 3.")
-    def move(self):
-       pass
+   
+     def move(self):
+          """Method used to move MacGayver
+          on the map """
+          new_move = self.position 
+          if new_move in self.laby.paths:
+            self.position = new_move
 
 def test_hero_works_as_expected():
     """Function that test if Class Hero is creating
