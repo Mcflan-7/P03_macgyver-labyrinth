@@ -6,6 +6,9 @@ in order to succeed"""
 
 import random
 
+# -tc- Je ne pense pas que Laby soit la classe principale du jeu qui sera plutôt la 
+# -tc- la classe Game ou Application. Laby a comme unique responsabilité de
+# -tc- représenter le labyrinthe et sa structure.
 class Laby:
     """Laby: Main class for the game
     Create several objects for the game
@@ -17,7 +20,9 @@ class Laby:
         self.walls = []
         self.paths = []
         self.start = []
+        # -tc- pourquoi une liste? La largeur (width) est un entier
         self.largeur = []
+        # -tc- pourquoi une liste? La hauteur (height) est un entier
         self.hauteur = []
         self.end = []
         self._random_positions = None
@@ -56,7 +61,10 @@ class Hero:
     (attributs) to Macgayver and
     manage the inventory """
 
-    def __init__(self):
+    # -tc- probablement que MacGyver devrait recevoir une instance de Laby en argument
+    # -tc- de son constructeur.
+    def __init__(self, laby):
+        # -tc- La position de départ est donnée par l'attribut start de laby
         self.position= (0, 0)
         self.inventory = 0
         self.won = False
@@ -68,17 +76,17 @@ class Hero:
         we load the class  """
         
         self.inventory += 1             
-        if self.inventory == 3:
+        if self.inventory == 3: # -tc- Non, car il faut rejoindre la sortie avant de gagner
             print("You won !")
             self.won = True
         else:
             print("Not so fast !", self.inventory  ,"item(s) picked up, you need 3.")
    
-    def move(self):
+    def move(self): # -tc- la méthode move doit probablement prendre en paramètre la direction du déplacement
         """Method used to move MacGayver
         on the map """
-        new_move = self.position 
-        if new_move in self.laby.paths:
+        new_move = self.position # -tc- self.position donne la position actuelle, pas la nouvelle 
+        if new_move in self.laby.paths: # -tc- du coup, il faut que ton constructeur enregistre laby en attribut
             self.position = new_move
 
 def test_hero_works_as_expected():
@@ -96,6 +104,7 @@ class Item:
     random position and incremente 
     Macgayver's inventory """
     
+    # -tc- Une classe Item représente un item, pas 3
     def __init__(self):
         self.items = ["Ether", "Needle", "Syringe"]
     
