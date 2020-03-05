@@ -82,15 +82,23 @@ class Hero(Laby):
         else:
             print("Not so fast !", self.inventory  ,"item(s) picked up, you need 3.")
 
-    def right(self):
-      pass
+   def move(self, direction):
+       
+        if direction == 'down' and self.paths == "#":
+          self.pos_x += 1
+          print("Move down")
 
-    def move(self, laby): # -tc- la méthode move doit probablement prendre en paramètre la direction du déplacement
-        """Method used to move MacGayver
-        on the map """
-        new_move = self.position # -tc- self.position donne la position actuelle, pas la nouvelle 
-        if new_move in self.laby.paths: # -tc- du coup, il faut que ton constructeur enregistre laby en attribut
-            self.position = new_move
+        elif direction == 'up' and self.paths == "#":
+          self.pos_x -= 1
+          print("Move up")
+
+        elif direction == 'left' and self.paths == "#":
+          self.pos_y -= 1
+          print("Move left")
+
+        elif direction == 'right' and self.paths == "#":
+          self.pos_y += 1
+          print("Move right")
 
 def test_hero_works_as_expected(laby):
     """Function that test if Class Hero is creating
