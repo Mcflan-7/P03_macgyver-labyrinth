@@ -4,6 +4,7 @@ that handle the laby and the methods
 link to it"""
 
 import random
+import going
 
 class Laby:
     """Laby: Class that represent the play zone
@@ -15,8 +16,8 @@ class Laby:
         self.walls = []
         self.paths = []
         self.start = []
-        self.largeur = 0
-        self.hauteur = 0
+        self.largeur = None 
+        self.hauteur = None
         self.end = []
         self._random_positions = None
  
@@ -30,9 +31,9 @@ class Laby:
         try:
           with open("maps/map1.txt", "r") as f:
             for ligne_n, ligne in enumerate(f):
-                self.hauteur = ligne_n
+                self.hauteur = ligne_n + 1
                 for col_n, col in enumerate(ligne):
-                    self.largeur = col_n
+                    self.largeur = col_n + 1
                     if col == "#":
                         self.walls.append((ligne_n, col_n))
                     elif col == ".":
@@ -41,10 +42,11 @@ class Laby:
                         self.start.append((ligne_n, col_n))
                     elif col == "X":
                         self.end.append((ligne_n, col_n))
+
           self._random_positions = iter(random.sample(self.paths, len(self.paths)))
-        except:
-          print("Map not loaded")      
-                                        
+        except FileNotFoundError as e:
+          print("Map not found", e)       
+                
     def get_random_position(self):
         """Generate random position
         for the laby so path always changed"""
@@ -56,10 +58,9 @@ class Hero():
     (attributs) to Macgayver and
     manage the inventory """
 
-    def __init__(self):
+    def __init__(self, laby):
+        self.laby = laby
         self.position= (0, 0)
-        self.pos_x = 0
-        self.pos_y = 0
         self.inventory = 0
         self.won = False
 
@@ -80,35 +81,20 @@ class Hero():
         """Method used to move the hero
         in the labyrinth and test if it is
         authorized path or not """
-        
-        if direction == 'down':
-            self.pos_x += 1
-            print("Move down")
-
-        elif direction == 'up':
-            self.pos_x -= 1
-            print("Move up")
-
-        elif direction == 'left':
-            self.pos_y -= 1
-            print("Move left")
-
-        elif direction == 'right':
-            self.pos_y += 1
-            print("Move right")
+        new_position = direction(self.position)
+        #if new_position in self.laby.paths:
+        self.position = new_position
 
 def test_hero_works_as_expected():
     """Function that test if Class Hero is creating
     new instances and if the condition is working """
-    Hero()
-    h = Hero()
-    h.move("right")
-    h.move("left")
-    h.move("left")
-    h.move("left")
-    h.move("down")
-    print(h.pos_x, h.pos_y)
-  
+    labyrinthe = Laby()
+    h = Hero(labyrinthe)
+    h.move(going.down)
+    h.move(going.down)
+    h.move(going.right)
+    h.move(going.right)
+    print(h.position)
 
 class Item:
     """Item: To generate new items in a 
@@ -122,12 +108,8 @@ def test_laby_works_as_expected():
     laby = Laby()
     laby.read_from_file()
     print("Départ: ", laby.start, "Exit: ", laby.end)
-    print(laby.get_random_position())
-    print(laby.get_random_position())
-    print(laby.get_random_position())
-    print("largeur: ", laby.largeur )
-    print("hauteur: ", laby.hauteur )
+ 
    
 if __name__ == "__main__":
   
-  test_hero_works_as_expected()
+  test_laby_works_as_expected()
