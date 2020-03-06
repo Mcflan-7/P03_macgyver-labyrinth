@@ -96,20 +96,34 @@ def test_hero_works_as_expected():
     h.move(going.right)
     print(h.position)
 
-class Item:
-    """Item: To generate new items in a 
-    random position and incremente 
-    Macgayver's inventory """
- 
-    def __init__(self, item):
-        self.items = item
-
 def test_laby_works_as_expected():
     laby = Laby()
     laby.read_from_file()
     print("Départ: ", laby.start, "Exit: ", laby.end)
+
+class Item:
+    """Item: To generate new items in a 
+    random position and incremente 
+    Macgayver's inventory """
+ # add item to path / randomize pos / 
+    def __init__(self):
+        self.items = []
+        self.position = None
+    
+    def add_item(self):
+        self.items.append('Object')
+laby = Laby()
+laby.read_from_file()
+random_elements = random.sample(laby.walls, len(laby.walls))
+print(random_elements.pop(0))
+i = Item()
+i.add_item()
+print(i.position)
+print(i.items)
+
+
+
  
    
 if __name__ == "__main__":
-  
-  test_laby_works_as_expected()
+    pass
