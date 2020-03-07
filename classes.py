@@ -113,18 +113,13 @@ class Item:
         self.position = (0,0)
 
     def set_position(self):
-        my_list = [(0, 1),(2,4),(4,2),]
-        self.position = random.sample(my_list, 1)
+        my_liste = [(0, 1),(2,4),(4,2),]
+        self.position = random.sample(my_liste, 1)
 
-
-item1 = Item('Object')
-item1.set_position()
-print('Random pos: ', item1.position , 'Name: ',item1.title)
+def test_item_works_as_expected():    
+    item1 = Item('Object')
+    item1.set_position()
+    print('Random pos: ', item1.position , 'Name: ',item1.title)
     
-
-
-
-
-   
 if __name__ == "__main__":
-    pass
+    test_item_works_as_expected()
