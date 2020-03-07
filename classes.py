@@ -1,10 +1,10 @@
 #! /usr/bin/env python3
-"""file for the MacGayver Labyrinth game
-that handle the laby and the methods 
-link to it"""
+"""Module for the MacGayver Labyrinth game
+classes that handle laby, hero and item"""
 
+from functions import move
 import random
-import going
+
 
 class Laby:
     """Laby: Class that represent the play zone
@@ -16,9 +16,9 @@ class Laby:
         self.walls = []
         self.paths = []
         self.start = []
-        self.largeur = None 
-        self.hauteur = None
         self.end = []
+        self.width = None 
+        self.height = None
         self._random_positions = None
  
     def read_from_file(self):
@@ -31,9 +31,9 @@ class Laby:
         try:
           with open("maps/map1.txt", "r") as f:
             for ligne_n, ligne in enumerate(f):
-                self.hauteur = ligne_n + 1
+                self.height = ligne_n + 1
                 for col_n, col in enumerate(ligne):
-                    self.largeur = col_n + 1
+                    self.width = col_n + 1
                     if col == "#":
                         self.walls.append((ligne_n, col_n))
                     elif col == ".":
@@ -90,10 +90,10 @@ def test_hero_works_as_expected():
     new instances and if the condition is working """
     labyrinthe = Laby()
     h = Hero(labyrinthe)
-    h.move(going.down)
-    h.move(going.down)
-    h.move(going.right)
-    h.move(going.right)
+    h.move(move.down)
+    h.move(move.down)
+    h.move(move.right)
+    h.move(move.right)
     print(h.position)
 
 def test_laby_works_as_expected():
@@ -102,28 +102,16 @@ def test_laby_works_as_expected():
     print("Départ: ", laby.start, "Exit: ", laby.end)
 
 class Item:
-    """Item: To generate new items in a 
-    random position and incremente 
-    Macgayver's inventory """
+    """Item: To generate new items 
+     """
  # add item to path / randomize pos / 
     def __init__(self):
         self.items = []
         self.position = None
     
     def add_item(self):
-        self.items.append('Object')
-laby = Laby()
-laby.read_from_file()
-random_elements = random.sample(laby.walls, len(laby.walls))
-print(random_elements.pop(0))
-i = Item()
-i.add_item()
-print(i.position)
-print(i.items)
+        self.items.append()
 
-
-
- 
    
 if __name__ == "__main__":
     pass
