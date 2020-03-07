@@ -4,6 +4,9 @@ classes that handle laby, hero and item"""
 
 from functions import move
 import random
+import logging
+
+logging.basicConfig(level=logging.DEBUG, format='%(message)s')
 
 
 class Laby:
@@ -45,7 +48,7 @@ class Laby:
 
           self._random_positions = iter(random.sample(self.paths, len(self.paths)))
         except FileNotFoundError as e:
-          print("Map not found", e)       
+          logging.warning("Map not found", e)       
                 
     def get_random_position(self):
         """Generate random position
@@ -72,10 +75,10 @@ class Hero():
         
         self.inventory += 1             
         if self.inventory == 3 and self.position == "X": 
-            print("You won !")
+            logging.info("You won !")
             self.won = True
         else:
-            print("Not so fast !", self.inventory  ,"item(s) picked up, you need 3.")
+            logging.info("Not so fast !", self.inventory  ,"item(s) picked up, you need 3.")
 
     def move(self, direction):
         """Method used to move the hero
@@ -94,23 +97,33 @@ def test_hero_works_as_expected():
     h.move(move.down)
     h.move(move.right)
     h.move(move.right)
-    print(h.position)
+    logging.debug(h.position)
 
 def test_laby_works_as_expected():
     laby = Laby()
     laby.read_from_file()
-    print("Départ: ", laby.start, "Exit: ", laby.end)
+    logging.debug("Départ: ", laby.start, "Exit: ", laby.end)
 
 class Item:
     """Item: To generate new items 
      """
  # add item to path / randomize pos / 
-    def __init__(self):
-        self.items = []
-        self.position = None
+    def __init__(self, title):
+        self.title = title
+        self.position = (0,0)
+
+    def set_position(self):
+        my_list = [(0, 1),(2,4),(4,2),]
+        self.position = random.sample(my_list, 1)
+
+
+item1 = Item('Object')
+item1.set_position()
+print('Random pos: ', item1.position , 'Name: ',item1.title)
     
-    def add_item(self):
-        self.items.append()
+
+
+
 
    
 if __name__ == "__main__":
