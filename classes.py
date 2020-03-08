@@ -85,18 +85,21 @@ class Hero():
         in the labyrinth and test if it is
         authorized path or not """
         new_position = direction(self.position)
-        #if new_position in self.laby.paths:
+        #if new_position in self.laby.paths: # -gg- position ne bouge pas avec cette condition
         self.position = new_position
 
 def test_hero_works_as_expected():
     """Function that test if Class Hero is creating
     new instances and if the condition is working """
-    labyrinthe = Laby()
-    h = Hero(labyrinthe)
+    labyrinthe = Laby() # j'instancie laby 
+    h = Hero(labyrinthe) # je passe en paramètre labyrinth
     h.move(move.down)
     h.move(move.down)
     h.move(move.right)
     h.move(move.right)
+    h.move(move.left)
+    h.move(move.up)
+    h.move(move.down)
     logging.debug(h.position)
 
 def test_laby_works_as_expected():
@@ -108,18 +111,18 @@ class Item:
     """Item: To generate new items 
      """
  # add item to path / randomize pos / 
-    def __init__(self, title):
-        self.title = title
-        self.position = (0,0)
+    def __init__(self, laby):
+        self.laby = laby
+        self.position= (0, 0)
 
-    def set_position(self):
-        my_liste = [(0, 1),(2,4),(4,2),]
-        self.position = random.sample(my_liste, 1)
+   
+def test_item_works_as_expected():
+    laby = Laby() # j'instancie laby 
+    i = Item(laby)
+    print(i.position)
 
-def test_item_works_as_expected():    
-    item1 = Item('Object')
-    item1.set_position()
-    print('Random pos: ', item1.position , 'Name: ',item1.title)
-    
+
+
 if __name__ == "__main__":
     test_item_works_as_expected()
+    test_hero_works_as_expected()
