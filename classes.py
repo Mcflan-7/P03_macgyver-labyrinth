@@ -8,6 +8,7 @@ import logging
 
 logging.basicConfig(level=logging.DEBUG, format='%(message)s')
 
+#dossier en rapport avec la fonction
 
 class Laby:
     """Laby: Class that represent the play zone
@@ -23,6 +24,7 @@ class Laby:
         self.width = None 
         self.height = None
         self._random_positions = None
+        self.read_from_file()
  
     def read_from_file(self):
         """Read_from_file is reading each lines of path.txt
@@ -56,7 +58,7 @@ class Laby:
         
         return next(self._random_positions)
 
-class Hero():
+class Hero:
     """Hero: Class hero that set some actions
     (attributs) to Macgayver and
     manage the inventory """
@@ -85,8 +87,8 @@ class Hero():
         in the labyrinth and test if it is
         authorized path or not """
         new_position = direction(self.position)
-        #if new_position in self.laby.paths: # -gg- position ne bouge pas avec cette condition
-        self.position = new_position
+        if new_position in self.laby.paths: 
+            self.position = new_position
 
 def test_hero_works_as_expected():
     """Function that test if Class Hero is creating
@@ -101,6 +103,7 @@ def test_hero_works_as_expected():
     h.move(move.up)
     h.move(move.down)
     logging.debug(h.position)
+    logging.debug(labyrinthe.paths)
 
 def test_laby_works_as_expected():
     laby = Laby()
@@ -111,18 +114,16 @@ class Item:
     """Item: To generate new items 
      """
  # add item to path / randomize pos / 
-    def __init__(self, laby):
-        self.laby = laby
-        self.position= (0, 0)
+    def __init__(self, name, laby):
+        self.laby = laby  # j'utilise laby pour retourner une instance
+        self.position = laby.get_random_position()
+        self.name = name
 
    
 def test_item_works_as_expected():
-    laby = Laby() # j'instancie laby 
-    i = Item(laby)
-    print(i.position)
+        pass
 
 
 
 if __name__ == "__main__":
-    test_item_works_as_expected()
     test_hero_works_as_expected()
