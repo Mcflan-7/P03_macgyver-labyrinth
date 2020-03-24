@@ -94,16 +94,17 @@ def test_hero_works_as_expected():
     """Function that test if Class Hero is creating
     new instances and if the condition is working """
     labyrinthe = Laby() # j'instancie laby 
+    labyrinthe.read_from_file()
     h = Hero(labyrinthe) # je passe en paramètre labyrinth
-    h.move(move.down)
-    h.move(move.down)
     h.move(move.right)
-    h.move(move.right)
-    h.move(move.left)
+    h.move(move.up)
+    h.move(move.up)
+    h.move(move.up)
+    h.move(move.up)
     h.move(move.up)
     h.move(move.down)
     logging.debug(h.position)
-    logging.debug(labyrinthe.paths)
+    #logging.debug(labyrinthe.paths)
 
 def test_laby_works_as_expected():
     laby = Laby()
@@ -118,12 +119,12 @@ class Item:
         self.laby = laby  # j'utilise laby pour retourner une instance
         self.position = laby.get_random_position()
         self.name = name
-
    
 def test_item_works_as_expected():
-        pass
-
-
-
+        laby = Laby()
+        i1, i2, i3 = Item('Aiguille', laby), Item('Ether', laby), Item('Tube', laby)
+        logging.debug(i1.position)
+        logging.debug(i2.position)
+        logging.debug(i3.position)
 if __name__ == "__main__":
-    test_hero_works_as_expected()
+    test_item_works_as_expected()
