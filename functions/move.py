@@ -5,7 +5,7 @@ in the laby
 
 def right(position):
     x, y = position
-    return x+3, y
+    return x+1, y
 
 def left(position):
     x, y = position

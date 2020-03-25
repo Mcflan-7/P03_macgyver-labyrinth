@@ -8,14 +8,11 @@ import logging
 
 logging.basicConfig(level=logging.DEBUG, format='%(message)s')
 
-#dossier en rapport avec la fonction
-
 class Laby:
     """Laby: Class that represent the play zone
     and the labyrinth
     """
     def __init__(self):
-        """initialization of instances for the laby class """
 
         self.walls = []
         self.paths = []
@@ -40,17 +37,19 @@ class Laby:
                 for col_n, col in enumerate(ligne):
                     self.width = col_n + 1
                     if col == "#":
-                        self.walls.append((ligne_n, col_n))
+                        self.walls.append((col_n, ligne_n))
                     elif col == ".":
-                        self.paths.append((ligne_n, col_n))
+                        self.paths.append((col_n, ligne_n))
                     elif col == "S":
-                        self.start.append((ligne_n, col_n))
+                        self.start.append((col_n, ligne_n))
                     elif col == "X":
-                        self.end.append((ligne_n, col_n))
+                        self.end.append((col_n, ligne_n))
 
           self._random_positions = iter(random.sample(self.paths, len(self.paths)))
-        except FileNotFoundError as e:
-          logging.warning("Map not found", e)       
+          self.paths.extend([self.start, self.end])
+        
+        except FileNotFoundError:
+          logging.warning("Map not found")       
                 
     def get_random_position(self):
         """Generate random position
@@ -63,24 +62,12 @@ class Hero:
     (attributs) to Macgayver and
     manage the inventory """
 
-    def __init__(self, laby):
+    def __init__(self, laby, items):
         self.laby = laby
         self.position= (0, 0)
         self.inventory = 0
+        self.items = items
         self.won = False
-
-    def pick_up_item(self):
-        """Method used to store the number
-        of item MacGayver pick up and 
-        give a random position to them each time 
-        we load the class  """
-        
-        self.inventory += 1             
-        if self.inventory == 3 and self.position == "X": 
-            logging.info("You won !")
-            self.won = True
-        else:
-            logging.info("Not so fast !", self.inventory  ,"item(s) picked up, you need 3.")
 
     def move(self, direction):
         """Method used to move the hero
@@ -89,42 +76,49 @@ class Hero:
         new_position = direction(self.position)
         if new_position in self.laby.paths: 
             self.position = new_position
+            if self.position in self.items:
+                self.inventory += 1
 
 def test_hero_works_as_expected():
     """Function that test if Class Hero is creating
     new instances and if the condition is working """
-    labyrinthe = Laby() # j'instancie laby 
-    labyrinthe.read_from_file()
-    h = Hero(labyrinthe) # je passe en paramètre labyrinth
+    laby = Laby()
+    i1, i2, i3 = Item('Aiguille', laby), Item('Ether', laby), Item('Tube', laby)
+    logging.debug("%s, %s",i1.name, i1.position)
+    print(i2.name, i2.position)
+    print(i3.name, i3.position)
+    print(Item.items)
+    items = Item.items
+    laby.read_from_file()
+    h = Hero(laby, items)
     h.move(move.right)
-    h.move(move.up)
-    h.move(move.up)
-    h.move(move.up)
-    h.move(move.up)
-    h.move(move.up)
-    h.move(move.down)
     logging.debug(h.position)
-    #logging.debug(labyrinthe.paths)
 
 def test_laby_works_as_expected():
     laby = Laby()
     laby.read_from_file()
-    logging.debug("Départ: ", laby.start, "Exit: ", laby.end)
 
 class Item:
-    """Item: To generate new items 
-     """
- # add item to path / randomize pos / 
+    """Generate 3 randoms items in 
+    the paths"""
+    items = {}
     def __init__(self, name, laby):
-        self.laby = laby  # j'utilise laby pour retourner une instance
+        self.laby = laby 
         self.position = laby.get_random_position()
         self.name = name
+        self.items[self.position] = self
    
 def test_item_works_as_expected():
-        laby = Laby()
-        i1, i2, i3 = Item('Aiguille', laby), Item('Ether', laby), Item('Tube', laby)
-        logging.debug(i1.position)
-        logging.debug(i2.position)
-        logging.debug(i3.position)
+    """Function that test if Class Item is creating
+    new items and place them randomly 
+    on the maze"""
+
+    laby = Laby()
+    i1, i2, i3 = Item('Aiguille', laby), Item('Ether', laby), Item('Tube', laby)
+    logging.debug("%s, %s",i1.name, i1.position)
+    print(i2.name, i2.position)
+    print(i3.name, i3.position)
+    print(Item.items)
+
 if __name__ == "__main__":
-    test_item_works_as_expected()
+    test_hero_works_as_expected()
