@@ -1,6 +1,8 @@
 #! /usr/bin/env python3
 
-from functions import move
+from .item import Item  
+from .hero import Hero
+from .move import left, right, up, down
 import random
 import logging
 

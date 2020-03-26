@@ -1,11 +1,13 @@
 #! /usr/bin/env python3
 
-from . import laby, item 
-from . import move
+from .laby import Laby  
+from .item import Item  
+from .move import left, right, up, down
 import random
 import logging
 
 logging.basicConfig(level=logging.DEBUG, format='%(message)s')
+
 class Hero:
     """Hero: Class hero that set some actions
     (attributs) to Macgayver and
@@ -40,5 +42,4 @@ def test_hero_works_as_expected():
     items = Item.items
     laby.read_from_file()
     h = Hero(laby, items)
-    h.move(move.right)
     logging.debug(h.position)

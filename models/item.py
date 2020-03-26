@@ -1,7 +1,9 @@
 #! /usr/bin/env python3
 
-from . import laby, hero 
-from . import move
+from .laby import Laby  
+from .item import Item  
+from .hero import Hero
+from .move import left, right, up, down
 import random
 import logging
 
