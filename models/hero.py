@@ -27,10 +27,10 @@ class Hero:
             self.position = new_position
             if self.position in Item.items:
                 self.inventory += 1 
+                #del Item.items[items]
                 #effacer objet de item.items // comment effacer element dict par key //
             if self.position in self.laby.end:
                 if self.inventory == 3:
-                    pass # raise/exception (exception personnalisée) ou return d'une valeur str qui represente victoire ou defaite
+                    print("Bravo, vous avez gagné !")
                 else:
-                    pass
-            
+                    print("Echec, vous n'avez pas récuperé les 3 items !")

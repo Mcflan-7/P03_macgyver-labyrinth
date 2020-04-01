@@ -1,22 +1,22 @@
 #! /usr/bin/env python3
-'''
+"""
 Module used to display the maze 
 and move hero using the package pygame
-'''
+"""
 from models.laby import Laby
 from models.hero import Hero
 from models.item import Item
 from models.move import left, right, up, down
 
 import pygame 
-
+import time
 
 class MazeGame:
-    '''
+    """
     Maze game handle
     the display and
     the move of the hero 
-    '''
+    """
 
     def __init__(self):
         pygame.init()
@@ -31,7 +31,11 @@ class MazeGame:
         self.paths_img = pygame.image.load("media/images/paths.png").convert_alpha()
 
     def display(self):
+        """
+        Handle the display
+        """
         pygame.display.set_icon(self.icon_img)
+        self.screen.blit(self.macgayver_img, (0, 0))
         self.screen.blit(self.background_img, (0, 0))
         self.screen.blit(self.start_img, (0, 0))
         self.screen.blit(self.macgayver_img, (0, 0))
@@ -39,8 +43,12 @@ class MazeGame:
         self.screen.blit(self.paths_img, (0, 370))
         self.screen.blit(self.end_img, (0, 600))
         pygame.display.flip() 
-      
+
     def move_character(self):
+         """
+        Move MacGyver 
+        inside the maze 
+        """
         laby = Laby()
         hero = Hero(laby)
         running = True
@@ -72,4 +80,9 @@ def test_game_work_as_excepted():
     mazegame.display()
     mazegame.move_character()
 
+
 test_game_work_as_excepted()
+
+
+
+	
