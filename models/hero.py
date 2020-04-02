@@ -27,6 +27,7 @@ class Hero:
             self.position = new_position
             if self.position in Item.items:
                 self.inventory += 1 
+                
                 #del Item.items[items]
                 #effacer objet de item.items // comment effacer element dict par key //
             if self.position in self.laby.end:
