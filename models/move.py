@@ -1,7 +1,4 @@
-'''
-Module used to move the hero 
-in the laby
-'''
+"""Module used to move the hero in the laby."""
 
 def right(position):
     x, y = position

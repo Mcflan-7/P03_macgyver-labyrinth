@@ -21,11 +21,10 @@ class Laby:
         self.read_from_file()
  
     def read_from_file(self):
-        """Read_from_file is reading each lines of path.txt
-        and return an enumerate list for wall (unauthorized path)
-        or path (authorized path) with index and value
-        it includes the starting position and the exit
-        and finally a method to get random position"""
+        """Read_from_file is reading each lines of path.txt and return an
+        enumerate list for wall (unauthorized path) or path (authorized path)
+        with index and value it includes the starting position and the exit and
+        finally a method to get random position."""
 
         try:
           with open("maps/map1.txt", "r") as f:
@@ -50,7 +49,6 @@ class Laby:
           logging.warning("Map not found")       
                 
     def get_random_position(self):
-        """Generate random position
-        for the laby so path always changed"""
+        """Generate random position for the laby so path always changed."""
         
         return next(self._random_positions)
