@@ -3,12 +3,14 @@
 
 import random
 
+
 class Item:
     """Generate 3 randoms items in the paths."""
+
     items = {}
+
     def __init__(self, name, laby):
-        self.laby = laby 
+        self.laby = laby
         self.position = laby.get_random_position()
         self.name = name
         self.items[self.position] = self
-   

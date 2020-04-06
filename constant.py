@@ -7,7 +7,9 @@ pygame.display.set_mode()
 
 sprite_size = 32
 title_screen = pygame.display.set_caption("MacGyver - Labyrinth Game")
-control_keyboard = pygame.image.load("media/images/control_keyboard.png").convert_alpha()
+control_keyboard = pygame.image.load(
+    "media/images/control_keyboard.png"
+).convert_alpha()
 
 background = pygame.image.load("media/images/background.jpg").convert_alpha()
 macgyver = pygame.image.load("media/images/macg.png").convert_alpha()
