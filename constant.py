@@ -11,7 +11,6 @@ control_keyboard = pygame.image.load(
     "media/images/control_keyboard.png"
 ).convert_alpha()
 
-background = pygame.image.load("media/images/background.jpg").convert_alpha()
 macgyver = pygame.image.load("media/images/macg.png").convert_alpha()
 macgyver_dead = pygame.image.load("media/images/macg_dead.png").convert_alpha()
 logo_screen = pygame.display.set_icon(macgyver)

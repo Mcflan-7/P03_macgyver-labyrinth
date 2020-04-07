@@ -10,8 +10,8 @@ from models.move import left, right, up, down
 from constant import (
     sprite_size,
     macgyver,
+    macgyver_dead,
     walls,
-    background,
     paths,
     start,
     end,
@@ -60,11 +60,16 @@ class MazeGame:
             x, y = path
             self.background.blit(self.path, (x * sprite_size, y * sprite_size))
 
+        self.end_pos = end
+        for end_pos in self.laby.end:
+            x, y = end_pos
+            self.background.blit(self.end_pos, (x * sprite_size, y * sprite_size))
+
         self.allsprites = pygame.sprite.Group()
-        self.allsprites.add(HeroSprite(self.hero))
         self.allsprites.add(ItemSprite(self.needle, needle))
         self.allsprites.add(ItemSprite(self.ether, ether))
         self.allsprites.add(ItemSprite(self.tube, tube))
+        self.allsprites.add(HeroSprite(self.hero))
 
         pygame.display.update()
 
@@ -79,8 +84,6 @@ class MazeGame:
             text = font.render(f"Inventory ({self.hero.inventory})", 1, (1, 0, 0))
             control = font.render(f"Move with:", 1, (1, 0, 0))
             self.screen.blit(self.background, (0, 0))
-            self.screen.blit(self.start_img, (0, 0))
-            self.screen.blit(self.end_img, (445, 446))
             self.screen.blit(text, (10, 490))
             self.screen.blit(control, (320, 490))
             self.screen.blit(control_keyboard, (428, 476))
@@ -101,11 +104,14 @@ class MazeGame:
 
                     elif event.key == pygame.K_LEFT:
                         self.hero.move(left)
-            if self.hero.inventory == 3 and self.hero.position == (5, 0):
+            if self.hero.inventory == 3 and self.hero.position == (14, 14):
+                self.hero.position = (14, 14)
                 self.screen.blit(won, (50, 200))
-            elif self.hero.inventory != 3 and self.hero.position == (5, 0):
-                self.screen.blit(lose, (50, 200))
-
+                
+            elif self.hero.inventory != 3 and self.hero.position == (14, 14):
+                self.hero.position = (14, 14)
+                self.screen.blit(macgyver_dead, (425, 446))
+                
             self.allsprites.update()
             self.allsprites.draw(self.screen)
             pygame.display.update()
@@ -129,7 +135,7 @@ class HeroSprite(pygame.sprite.Sprite):
         x, y = self.hero.position
         self.rect.x = x * sprite_size
         self.rect.y = y * sprite_size
-
+        
 
 class ItemSprite(pygame.sprite.Sprite):
     """Method handling the sprite
@@ -149,7 +155,6 @@ class ItemSprite(pygame.sprite.Sprite):
         x, y = self.item.position
         self.rect.x = x * sprite_size
         self.rect.y = y * sprite_size
-
 
 def main():
     game = MazeGame()
