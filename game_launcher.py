@@ -23,10 +23,11 @@ from constant import (
     control_keyboard,
     won,
     lose,
+    
 )
 
 import pygame
-
+import time
 
 class MazeGame:
     """Maze game handle the display and the move of the hero."""
@@ -78,8 +79,10 @@ class MazeGame:
         instances needed for the game and
         keep a while loop running"""
         self.running = True
+       
         while self.running:
-
+            death_sound = pygame.mixer.Sound("media/sounds/death.wav")
+            win_sound = pygame.mixer.Sound("media/sounds/win.wav")
             font = pygame.font.Font(None, 30)
             text = font.render(f"Inventory ({self.hero.inventory})", 1, (1, 0, 0))
             control = font.render(f"Move with:", 1, (1, 0, 0))
@@ -88,6 +91,7 @@ class MazeGame:
             self.screen.blit(control, (320, 490))
             self.screen.blit(control_keyboard, (428, 476))
 
+            
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
@@ -104,13 +108,22 @@ class MazeGame:
 
                     elif event.key == pygame.K_LEFT:
                         self.hero.move(left)
+
             if self.hero.inventory == 3 and self.hero.position == (14, 14):
-                self.hero.position = (14, 14)
                 self.screen.blit(won, (50, 200))
+                self.hero.position = (14, 14)
+                
+                win_sound.play()
+                
+                time.sleep(3)
+                self.running = False
                 
             elif self.hero.inventory != 3 and self.hero.position == (14, 14):
+                self.screen.blit(lose, (50, 200))
+                death_sound.play()
                 self.hero.position = (14, 14)
-                self.screen.blit(macgyver_dead, (425, 446))
+                time.sleep(3)
+                self.running = False
                 
             self.allsprites.update()
             self.allsprites.draw(self.screen)

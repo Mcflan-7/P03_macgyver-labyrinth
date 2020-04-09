@@ -27,3 +27,4 @@ end = pygame.image.load("media/images/end.png").convert_alpha()
 
 won = pygame.image.load("media/images/won_game.jpg").convert_alpha()
 lose = pygame.image.load("media/images/lost_game.jpg").convert_alpha()
+
