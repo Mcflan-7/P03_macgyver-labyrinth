@@ -1,3 +1,5 @@
+"""Module used to display the items
+"""
 import pygame
 from models.constant import sprite_size
 

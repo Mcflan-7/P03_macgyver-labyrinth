@@ -1,3 +1,5 @@
+"""Module used to display and move the hero using the package pygame.
+"""
 import pygame
 from models.constant import sprite_size, macgyver
 

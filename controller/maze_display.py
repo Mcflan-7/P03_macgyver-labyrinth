@@ -1,3 +1,6 @@
+"""Module used to display the maze
+"""
+
 from views.hero_sprite import HeroSprite
 from views.item_sprite import ItemSprite
 from models.laby import Laby
@@ -109,18 +112,12 @@ class MazeGame:
             if self.hero.inventory == 3 and self.hero.position == (14, 14):
                 self.screen.blit(won, (50, 200))
                 self.hero.position = (14, 14)
-                
-                win_sound.play()
-                
-                time.sleep(3)
-                self.running = False
+            
                 
             elif self.hero.inventory != 3 and self.hero.position == (14, 14):
                 self.screen.blit(lose, (50, 200))
-                death_sound.play()
                 self.hero.position = (14, 14)
-                time.sleep(3)
-                self.running = False
+        
                 
             self.allsprites.update()
             self.allsprites.draw(self.screen)
