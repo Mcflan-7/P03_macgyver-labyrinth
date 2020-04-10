@@ -1,12 +1,9 @@
 #! /usr/bin/env python3
 """Handle the position of the hero"""
 
-from .item import Item
-
-import random
 import logging
-import pygame
 
+from .item import Item
 
 logging.basicConfig(level=logging.DEBUG, format="%(message)s")
 
@@ -24,16 +21,16 @@ class Hero:
     def move(self, direction):
         """Method used to move the hero in the labyrinth and test if it is
         authorized path or not."""
-        
+
         new_position = direction(self.position)
         if new_position in self.laby.paths:
             self.position = new_position
             if self.position in Item.items:
                 self.inventory += 1
-                item = Item.items[self.position]
-                del Item.items[self.position]
-                Item.items[(self.inventory - 1, 15)] = item
-                
+                item = Item.items.pop(self.position)
+                Item.items[(self.inventory + 4, 15)] = item
+                item.position = (self.inventory + 4, 15)
+
             if self.position in self.laby.end:
                 if self.inventory == 3:
                     print("Bravo, vous avez gagné !")

@@ -1,8 +1,5 @@
 ![MacGayver](https://mesannees8090.files.wordpress.com/2014/11/macgyver1.jpg "MacGayver")
 
-#ajouter comment installer projet /
-#verifier PEP8 
-
 # Mac Gayver - Laby 
 Mac gayver Laby is a game using Python and PyGame to render a labyrinthe where a hero, Mac Gayver, has to reach the exit with 3 items to defeat the guardian.
 
@@ -10,7 +7,7 @@ Each time you launch the game, the items and the path are randomly generated
 
 ### Features :
 
-- Well documented, using docstring and comment to a better understanding for those who wish to modifiy the code
+- Well documented, using docstrings and comments to a better understanding for those who wish to modifiy the code
 - Super easy, lead MacGayver to victory and enjoy the show !
 - The item are randomly generated
 - Use the assets you want, very easy to modify 
@@ -20,8 +17,9 @@ Each time you launch the game, the items and the path are randomly generated
 ### How to play :
 
 1 - Make sure to have Python installed on your computer
-2 - Install pygame using pip-freeze the file requirements.txt 
-3 - Click on the module called "game_launcher" this file will start the game 
+2 - Install pygame using pip-freeze the file requirements.txt
+3 - 
+3 - launch the game using python -m game_launcher.py
 
 That's all !
 

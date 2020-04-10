@@ -1,7 +1,9 @@
 """Module used to display and move the hero using the package pygame.
 """
 import pygame
+
 from models.constant import sprite_size, macgyver
+
 
 class HeroSprite(pygame.sprite.Sprite):
     """Method handling the sprite
@@ -16,9 +18,8 @@ class HeroSprite(pygame.sprite.Sprite):
         self.update()
 
     def update(self):
-        """Updating the 
+        """Updating the
         position and the sprite"""
         x, y = self.hero.position
         self.rect.x = x * sprite_size
         self.rect.y = y * sprite_size
-        

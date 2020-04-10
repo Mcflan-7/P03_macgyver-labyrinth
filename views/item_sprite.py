@@ -1,7 +1,9 @@
 """Module used to display the items
 """
 import pygame
+
 from models.constant import sprite_size
+
 
 class ItemSprite(pygame.sprite.Sprite):
     """Method handling the sprite
@@ -16,8 +18,8 @@ class ItemSprite(pygame.sprite.Sprite):
         self.update()
 
     def update(self):
-        """Updating the 
+        """Updating the
         position and the sprite"""
         x, y = self.item.position
-        self.rect.x = x * sprite_size
-        self.rect.y = y * sprite_size
+        self.rect.x = x * sprite_size + 2
+        self.rect.y = y * sprite_size + 2

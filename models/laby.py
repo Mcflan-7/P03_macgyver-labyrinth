@@ -44,7 +44,8 @@ class Laby:
                         elif col == "X":
                             self.end.append((col_n, ligne_n))
 
-            self._random_positions = iter(random.sample(self.paths, len(self.paths)))
+            self._random_positions = iter(
+                random.sample(self.paths, len(self.paths)))
             self.paths.extend(self.start)
             self.paths.extend(self.end)
 

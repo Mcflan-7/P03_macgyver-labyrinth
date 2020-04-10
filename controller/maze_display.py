@@ -1,6 +1,8 @@
 """Module used to display the maze
 """
 
+import pygame
+
 from views.hero_sprite import HeroSprite
 from views.item_sprite import ItemSprite
 from models.laby import Laby
@@ -9,8 +11,6 @@ from models.item import Item
 from models.move import left, right, up, down
 from models.constant import (
     sprite_size,
-    macgyver,
-    macgyver_dead,
     walls,
     paths,
     start,
@@ -23,11 +23,9 @@ from models.constant import (
     control_keyboard,
     won,
     lose,
-    
+
 )
 
-import pygame
-import time
 
 class MazeGame:
     """Maze game handle the display and the move of the hero."""
@@ -45,7 +43,7 @@ class MazeGame:
         self.title_screen = title_screen
         self.logo_screen = logo_screen
 
-        self.background = pygame.Surface((700, 700))
+        self.background = pygame.Surface((710, 700))
         self.background.fill((255, 255, 255))
         self.start_img = start
         self.end_img = end
@@ -64,7 +62,8 @@ class MazeGame:
         self.end_pos = end
         for end_pos in self.laby.end:
             x, y = end_pos
-            self.background.blit(self.end_pos, (x * sprite_size, y * sprite_size))
+            self.background.blit(
+                self.end_pos, (x * sprite_size, y * sprite_size))
 
         self.allsprites = pygame.sprite.Group()
         self.allsprites.add(ItemSprite(self.needle, needle))
@@ -75,23 +74,22 @@ class MazeGame:
         pygame.display.update()
 
     def start(self):
-        """Method that launch all 
+        """Method that launch all
         instances needed for the game and
         keep a while loop running"""
         self.running = True
-       
+
         while self.running:
-            death_sound = pygame.mixer.Sound("media/sounds/death.wav")
-            win_sound = pygame.mixer.Sound("media/sounds/win.wav")
             font = pygame.font.Font(None, 30)
-            text = font.render(f"Inventory ({self.hero.inventory})", 1, (1, 0, 0))
+            text = font.render(
+                f"Inventory ({self.hero.inventory})", 1, (1, 0, 0))
             control = font.render(f"Move with:", 1, (1, 0, 0))
             self.screen.blit(self.background, (0, 0))
             self.screen.blit(text, (10, 490))
+            self.screen.blit(start, (0, 0))
             self.screen.blit(control, (320, 490))
             self.screen.blit(control_keyboard, (428, 476))
 
-            
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
@@ -112,14 +110,11 @@ class MazeGame:
             if self.hero.inventory == 3 and self.hero.position == (14, 14):
                 self.screen.blit(won, (50, 200))
                 self.hero.position = (14, 14)
-            
-                
+
             elif self.hero.inventory != 3 and self.hero.position == (14, 14):
                 self.screen.blit(lose, (50, 200))
                 self.hero.position = (14, 14)
-        
-                
+
             self.allsprites.update()
             self.allsprites.draw(self.screen)
             pygame.display.update()
-

@@ -1,8 +1,6 @@
 #! /usr/bin/env python3
 """Handle the position of the items and their behaviors."""
 
-import random
-
 
 class Item:
     """Generate 3 randoms items in the paths."""
