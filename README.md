@@ -17,9 +17,9 @@ Each time you launch the game, the items and the path are randomly generated
 ### How to play :
 
 1 - Make sure to have Python installed on your computer
-2 - Install pygame using pip-freeze the file requirements.txt
-3 - 
-3 - launch the game using python -m game_launcher.py
+2 - Run "python -m venv venv" 
+3 - Activate your virtualenv with "source venv/Scripts/activate" on windows and "source venv/bin/activate" on MacOS
+3 - Launch the game using python -m game_launcher.py
 
-That's all !
+That's all, have fun !
 

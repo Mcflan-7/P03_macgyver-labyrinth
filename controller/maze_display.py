@@ -1,3 +1,4 @@
+#! /usr/bin/env python3
 """Module used to display the maze
 """
 
@@ -23,7 +24,6 @@ from models.constant import (
     control_keyboard,
     won,
     lose,
-
 )
 
 
@@ -62,8 +62,7 @@ class MazeGame:
         self.end_pos = end
         for end_pos in self.laby.end:
             x, y = end_pos
-            self.background.blit(
-                self.end_pos, (x * sprite_size, y * sprite_size))
+            self.background.blit(self.end_pos, (x * sprite_size, y * sprite_size))
 
         self.allsprites = pygame.sprite.Group()
         self.allsprites.add(ItemSprite(self.needle, needle))
@@ -81,8 +80,7 @@ class MazeGame:
 
         while self.running:
             font = pygame.font.Font(None, 30)
-            text = font.render(
-                f"Inventory ({self.hero.inventory})", 1, (1, 0, 0))
+            text = font.render(f"Inventory ({self.hero.inventory})", 1, (1, 0, 0))
             control = font.render(f"Move with:", 1, (1, 0, 0))
             self.screen.blit(self.background, (0, 0))
             self.screen.blit(text, (10, 490))
