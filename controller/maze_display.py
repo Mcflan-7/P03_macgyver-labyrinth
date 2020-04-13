@@ -104,6 +104,9 @@ class MazeGame:
 
                     elif event.key == pygame.K_LEFT:
                         self.hero.move(left)
+                    
+                    elif event.key == pygame.K_RETURN or pygame.K_KP_ENTER or pygame.K_q:
+                        self.running = False
 
             if self.hero.inventory == 3 and self.hero.position == (14, 14):
                 self.screen.blit(won, (50, 200))
