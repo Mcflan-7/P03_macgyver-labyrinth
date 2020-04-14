@@ -17,9 +17,10 @@ Each time you launch the game, the items and the path are randomly generated
 ### How to play :
 
 - Make sure to have Python installed on your computer
-- Run "python -m venv venv" 
-- Activate your virtualenv with "source venv/Scripts/activate" on windows and "source venv/bin/activate" on MacOS
-- Launch the game using python -m game_launcher.py
+- Create a new directory with a name of your choosing
+- Run `python -m venv venv` to create a new virtual environement
+- Activate your virtual environement with `source venv/Scripts/activate` on windows and `source venv/bin/activate` on MacOS
+- Launch the game using `python -m game_launcher.py`
 
 That's all, have fun !
 
