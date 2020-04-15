@@ -18,7 +18,8 @@ Each time you launch the game, the items and the paths are randomly generated
 - Create a new directory with a name of your choosing
 - Run `python -m venv venv` to create a new virtual environement
 - Activate your virtual environement with `source venv/Scripts/activate` on windows and `source venv/bin/activate` on MacOS
-- Launch the game using `python -m game_launcher.py`
+- Install the requirement with `pip install -r requirements.txt`
+- Launch the game using `python -m game_launcher`
 
 That's all, have fun !
 
