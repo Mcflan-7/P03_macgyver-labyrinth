@@ -1,9 +1,7 @@
-![MacGayver](https://mesannees8090.files.wordpress.com/2014/11/macgyver1.jpg "MacGayver")
+# Mac Gayver - Labyrinth 
+Mac Gayver - Labyrinth is a game using Python and PyGame to render a labyrinthe where a hero, Mac Gayver, has to reach the exit with 3 items to defeat the guardian.
 
-# Mac Gayver - Laby 
-Mac gayver Laby is a game using Python and PyGame to render a labyrinthe where a hero, Mac Gayver, has to reach the exit with 3 items to defeat the guardian.
-
-Each time you launch the game, the items and the path are randomly generated
+Each time you launch the game, the items and the paths are randomly generated
 
 ### Features :
 
