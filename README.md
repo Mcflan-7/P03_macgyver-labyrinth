@@ -15,7 +15,7 @@ Each time you launch the game, the items and the paths are randomly generated
 ### How to play :
 
 - Make sure to have Python installed on your computer
-- Create a new directory with a name of your choosing
+- clone the repository `git clone https://github.com/Mcflan-7/macgayver-labyrinth.git`
 - Run `python -m venv venv` to create a new virtual environement
 - Activate your virtual environement with `source venv/Scripts/activate` on windows and `source venv/bin/activate` on MacOS
 - Install the requirement with `pip install -r requirements.txt`
